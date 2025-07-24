@@ -38,7 +38,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-sbfkg)qtca)q(@cdw(%lt@nr0m-2u7*_e+pfa(1gg31v9xciv%')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = False  # Set to False for production
 
 ALLOWED_HOSTS = ['*']  # Allow all hosts for Vercel
 

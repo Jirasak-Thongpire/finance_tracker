@@ -40,7 +40,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-sbfkg)qtca)q(@cdw(%lt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1,localhost,.vercel.app', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = ['*']  # Allow all hosts for Vercel
 
 
 # Application definition
@@ -96,16 +96,8 @@ DATABASES = {
     }
 }
 
-# Add this for Vercel production
-if os.environ.get('VERCEL_ENV') == 'production':
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('POSTGRES_DATABASE'),
-        'USER': config('POSTGRES_USER'),
-        'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': config('POSTGRES_HOST'),
-        'PORT': config('POSTGRES_PORT', default='5432'),
-    }
+# Keep SQLite for Vercel (simpler deployment)
+# For production with database, uncomment and configure PostgreSQL
 
 
 # Password validation

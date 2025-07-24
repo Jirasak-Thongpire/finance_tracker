@@ -92,12 +92,13 @@ WSGI_APPLICATION = 'finance_tracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': ':memory:',  # Use in-memory database for Vercel
     }
 }
 
-# Keep SQLite for Vercel (simpler deployment)
-# For production with database, uncomment and configure PostgreSQL
+# For local development, use file-based SQLite
+if not os.environ.get('VERCEL'):
+    DATABASES['default']['NAME'] = BASE_DIR / 'db.sqlite3'
 
 
 # Password validation
